@@ -1,4 +1,5 @@
-{%- for ip, hostnames in pillar_only.items() %}
+{% set pillar_only = salt['pillar.get']('hosts:only', {}) %}
+{% for ip, hostnames in pillar_only.items() %}
 {{ ip }}-host-entry:
   host.only:
     - name: {{ ip }}
